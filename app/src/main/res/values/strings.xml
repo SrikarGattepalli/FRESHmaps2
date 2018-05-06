@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FRESHmaps</string>
+    <string name="nextButton">Next</string>
+    <string name="BuildingInput">Enter the EVHS building</string>
+    <string name="WelcomeTitle">Welcome to FRESHmaps</string>
+    <string name="TextViewforMap">TextView</string>
+    <string name="BackButton">Back</string>
+    <string name="RoomInput">(Optional) Enter room</string>
+</resources>
