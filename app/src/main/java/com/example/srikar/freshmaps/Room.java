@@ -1,6 +1,5 @@
 package com.example.srikar.freshmaps;
 
-import java.util.ArrayList;
 
 public class Room {
     private String teacher;

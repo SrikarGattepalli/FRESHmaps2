@@ -37,12 +37,27 @@ public class MainActivity extends AppCompatActivity {
         byTeacher.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                View item = adapter.getView(position, view, parent);
+                String clickedName = parent.getItemAtPosition((int) id).toString();
+                School find = null;
+                try {
 
+                    find = new School(getAssets().open("teacherNames.txt"));
+                } catch (IOException e) {
+                    Log.d("ERROR!!!", e.getMessage());
+                }
+                ArrayList<Room> a = find.getTotalSchool();
+                Room next = a.get(0);
+                for (Room b : a) {
+                    if (b.getTeacher().equals(clickedName)) {
+                        next = b;
+
+                    }
+                }
                 Intent intent = new Intent(getApplicationContext(), Mapper.class);
                 //based on item add info to intent
-                intent.putExtra("room", parent.getItemAtPosition((int)id).toString());
+                intent.putExtra("total", clickedName + " " + next.getRoomNumber());
                 startActivity(intent);
+
             }
         });
 
