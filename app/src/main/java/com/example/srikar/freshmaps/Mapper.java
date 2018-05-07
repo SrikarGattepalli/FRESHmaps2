@@ -12,15 +12,8 @@ public class Mapper extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        String input = getIntent().getExtras().getString("room");
-        String total = "This room is in the " + input.charAt(0) + "-building and is Mr. Higgins room";
-        TextView text = findViewById(R.id.RoomDisplay);
-        text.setText(total);
-        if (input.charAt(0) == 'A') {
-            findViewById(R.id.Abuilding).setVisibility(View.VISIBLE);
-        } else if (input.charAt(0) == 'B') {
-            findViewById(R.id.Bbuilding).setVisibility(View.VISIBLE);
-        }
+        String clickedName = getIntent().getExtras().getString("room");
+        ((TextView) findViewById(R.id.RoomDisplay)).setText(clickedName);
         Button back = findViewById(R.id.BackButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
