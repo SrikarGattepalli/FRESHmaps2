@@ -33,12 +33,12 @@ public class Mapper extends AppCompatActivity {
             }
         });
 
-        ImageButton mapButton = (ImageButton) findViewById(R.id.evhsMap);
+        /*ImageButton mapButton = (ImageButton) findViewById(R.id.evhsMap);
         mapButton.setOnTouchListener(new View.OnTouchListener() {
             public boolean OnTouch(View v, MotionEvent event) {
 
             }
-        });
+        });*/
 
     }
 }

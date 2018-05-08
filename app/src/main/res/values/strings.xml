@@ -7,7 +7,7 @@
     <string name="BackButton">Back</string>
     <string name="RoomInput">(Optional) Enter room</string>
     <string-array name="teacherArray">
-        <item> Advincula, Marx </item>
+        <item>Advincula, Marx</item>
         <item>Ames, Jennifer</item>
         <item>Ashokkumar, Arjun</item>
         <item>Arroyo, Veronica</item>
@@ -30,7 +30,7 @@
         <item>Chen, Roger</item>
         <item>Crichton, Katie</item>
         <item>Cunningham, Josh</item>
-        <item>Del Rosario, Leo</item>
+        <item>Del-Rosario, Leo</item>
         <item>DeLira, Michelle</item>
         <item>DeVincenzi, Anthony</item>
         <item>DeVincenzi, Nicole</item>
@@ -74,7 +74,7 @@
         <item>Kuch, Cris</item>
         <item>Landeza, Gemma</item>
         <item>Layton, Michelle</item>
-        <item>Lesoine, Mary Kate</item>
+        <item>Lesoine, Mary-Kate</item>
         <item>Li, Alice</item>
         <item>Lobue, Brian</item>
         <item>Lubbs, Scott</item>
@@ -101,7 +101,7 @@
         <item>Pham, Tony</item>
         <item>Pongol, Carol</item>
         <item>Quiroga, Neives</item>
-        <item>Qian, Baixin (Kevin)</item>
+        <item>Qian, Baixin(Kevin)</item>
         <item>Ramirez, Serafin</item>
         <item>Redillas, Gary</item>
         <item>Robinson, Sara</item>
@@ -124,7 +124,7 @@
         <item>Tizon, Joan</item>
         <item>Truong, Thoai</item>
         <item>Ueldeghiorghis, Tes.</item>
-        <item>Van Holt, Greg</item>
+        <item>Van-Holt, Greg</item>
         <item>Vu, Tien</item>
         <item>Walz, David</item>
         <item>West, Charlie</item>
@@ -133,39 +133,13 @@
         <item>Wooden, Charity</item>
         <item>Yanowsky, Virginia</item>
         <item>Yu, Robert</item>
-        <item>Adminstration Office</item>
         <item>Kelly, Lauren</item>
         <item>Buckelew, Andrea</item>
         <item>Bourbour, Irene</item>
         <item>Conley, Gina</item>
         <item>Moreno, Victoria</item>
         <item>Garcia, Martina</item>
-        <item>APED Office</item>
-        <item>Marco Menendez</item>
-        <item>Duarte, Marie</item>
-        <item>Conference room</item>
-        <item>Solof, Laura</item>
-        <item>Bromberg, Liya</item>
-        <item>Nguyen, Xuan</item>
-        <item>Rodriguez, Natalie</item>
-        <item>Saelee, Sarne</item>
-        <item>Attendance Office</item>
-        <item>Betancourt, Raul</item>
-        <item>Everett, Katherne</item>
-        <item>Beebe, Rachel</item>
-        <item>Quach, Kym</item>
-        <item>General</item>
-        <item>Hamilton, Geordie</item>
-        <item>Bressani, Marla</item>
-        <item>SJPD</item>
-        <item>Gonzalez, Joey</item>
-        <item>Medical/Safety Emergency</item>
-        <item>Student Services</item>
-        <item>Miranda, Javier</item>
-        <item>Computer Lab</item>
-        <item>Help Desk</item>
-        <item>Dill, Sona</item>
-        <item>Dixon, Madalane</item>
+
 
     </string-array>
     <string name="title_activity_main">MainActivity</string>
@@ -175,6 +149,134 @@
         <item>A232</item>
         <item>C112</item>
         <item>A210</item>
+        <item>A212</item>
+        <item>A138</item>
+        <item>A229</item>
+        <item>F153</item>
+        <item>B113</item>
+        <item>B138</item>
+        <item>B109</item>
+        <item>B128</item>
+        <item>A148</item>
+        <item>E</item>
+        <item>E13</item>
+        <item>GYM</item>
+        <item>B209</item>
+        <item>F115</item>
+        <item>B117</item>
+        <item>P5</item>
+        <item>C113</item>
+        <item>A110</item>
+        <item>P2</item>
+        <item>P10</item>
+        <item>P102</item>
+        <item>P202</item>
+        <item>A142</item>
+        <item>B232</item>
+        <item>B118</item>
+        <item>GYM</item>
+        <item>P3</item>
+        <item>A120</item>
+        <item>A228</item>
+        <item>A233</item>
+        <item>B208</item>
+        <item>GYM</item>
+        <item>B225</item>
+        <item>E109</item>
+        <item>A211</item>
+        <item>P209</item>
+        <item>A114</item>
+        <item>P205</item>
+        <item>F114</item>
+        <item>GYM</item>
+        <item>P6</item>
+        <item>B128/B148</item>
+        <item>A133</item>
+        <item>P101</item>
+        <item>P11</item>
+        <item>A232/A217</item>
+        <item>A224</item>
+        <item>P206</item>
+        <item>B142</item>
+        <item>B110</item>
+        <item>A217/A120</item>
+        <item>P104</item>
+        <item>B229</item>
+        <item>B230</item>
+        <item>F144</item>
+        <item>A218</item>
+        <item>A115</item>
+        <item>A213</item>
+        <item>B228</item>
+        <item>A129</item>
+        <item>A131</item>
+        <item>GYM</item>
+        <item>B233</item>
+        <item>B211</item>
+        <item>P111</item>
+        <item>P105</item>
+        <item>A122</item>
+        <item>A209</item>
+        <item>B136</item>
+        <item>B212</item>
+        <item>P208</item>
+        <item>B227</item>
+        <item>B111</item>
+        <item>P107</item>
+        <item>P108</item>
+        <item>B108</item>
+        <item>A118</item>
+        <item>A226</item>
+        <item>E101</item>
+        <item>GYM</item>
+        <item>A225</item>
+        <item>P11</item>
+        <item>P100</item>
+        <item>A227</item>
+        <item>P200</item>
+        <item>B213</item>
+        <item>A109</item>
+        <item>A214</item>
+        <item>P4</item>
+        <item>B230/B117</item>
+        <item>A130</item>
+        <item>B210</item>
+        <item>P207</item>
+        <item>P7</item>
+        <item>B226</item>
+        <item>B214</item>
+        <item>E108</item>
+        <item>A116</item>
+        <item>B143</item>
+        <item>P201</item>
+        <item>B112</item>
+        <item>P203</item>
+        <item>P12</item>
+        <item>E102</item>
+        <item>B217</item>
+        <item>B149</item>
+        <item>A208</item>
+        <item>B114</item>
+        <item>P204</item>
+        <item>A135</item>
+        <item>P1</item>
+        <item>A108</item>
+        <item>P106</item>
+        <item>B224</item>
+        <item>A230</item>
+        <item>P8</item>
+        <item>P9</item>
+        <item>GYM</item>
+        <item>GYM</item>
+        <item>C112</item>
+        <item>B213</item>
+        <item>D101</item>
+        <item>D101</item>
+        <item>D103</item>
+        <item>D101</item>
+        <item>D104</item>
+        <item>D101</item>
+
 
     </string-array>
 </resources>
