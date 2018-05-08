@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 public class searchByTeacher extends AppCompatActivity {
     ArrayAdapter<String> adapter;
-
+    //search
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
