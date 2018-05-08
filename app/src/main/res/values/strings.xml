@@ -168,4 +168,13 @@
         <item>Dixon, Madalane</item>
 
     </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <string-array name="roomArray">
+        <item>B218</item>
+        <item>GYM</item>
+        <item>A232</item>
+        <item>C112</item>
+        <item>A210</item>
+
+    </string-array>
 </resources>

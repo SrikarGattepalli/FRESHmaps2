@@ -10,7 +10,7 @@ public class Room {
         this.teacher = teacher;
         this.roomNumber = roomNumber;
     }
-
+// FIX ALL DIRECTORY NAMES TO MATCH ADAPTER
     public String getTeacher() {
         return teacher;
     }

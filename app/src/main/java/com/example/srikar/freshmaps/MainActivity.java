@@ -1,90 +1,34 @@
 package com.example.srikar.freshmaps;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.SearchView;
-
-import java.io.File;
-import java.io.IOError;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView byTeacher = (ListView) findViewById(R.id.listViewTeacher);
-        final ArrayList<String> teacherNames = new ArrayList<String>();
-        teacherNames.addAll(Arrays.asList(getResources().getStringArray(R.array.teacherArray)));
-
-        adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, teacherNames);
-        byTeacher.setAdapter(adapter);
-        byTeacher.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Button name = (Button) findViewById(R.id.searchByTeacher);
+        Button room = (Button) findViewById(R.id.searchByRoom);
+        room.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String clickedName = parent.getItemAtPosition((int) id).toString();
-                School find = null;
-                try {
+            public void onClick(View view) {
 
-                    find = new School(getAssets().open("teacherNames.txt"));
-                } catch (IOException e) {
-                    Log.d("ERROR!!!", e.getMessage());
-                }
-                ArrayList<Room> a = find.getTotalSchool();
-                Room next = a.get(0);
-                for (Room b : a) {
-                    if (b.getTeacher().equals(clickedName)) {
-                        next = b;
-
-                    }
-                }
-                Intent intent = new Intent(getApplicationContext(), Mapper.class);
-                //based on item add info to intent
-                intent.putExtra("total", clickedName + " " + next.getRoomNumber());
-                startActivity(intent);
-
+                Intent startIntent = new Intent(getApplicationContext(), searchByRoom.class);
+                startActivity(startIntent);
             }
         });
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search, menu);
-        MenuItem item = menu.findItem(R.id.menuSearch);
-        SearchView searchView = (SearchView) item.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        name.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+            public void onClick(View view) {
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-
-                return false;
+                Intent startIntent = new Intent(getApplicationContext(), searchByTeacher.class);
+                startActivity(startIntent);
             }
         });
-        return super.onCreateOptionsMenu(menu);
     }
-
-
 }

@@ -43,12 +43,12 @@
         android:layout_marginStart="90dp"
         android:layout_marginTop="90dp"
         android:adjustViewBounds="false"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/schoolmap" />
+        app:srcCompat="@drawable/detailmap" />
 
     <ImageView
         android:id="@+id/Bbuilding"
