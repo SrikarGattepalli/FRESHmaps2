@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent startIntent = new Intent(getApplicationContext(), searchByRoom.class);
                 startActivity(startIntent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         name.setOnClickListener(new View.OnClickListener() {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent startIntent = new Intent(getApplicationContext(), searchByTeacher.class);
                 startActivity(startIntent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

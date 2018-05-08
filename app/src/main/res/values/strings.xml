@@ -160,7 +160,6 @@
         <item>A148</item>
         <item>E</item>
         <item>E13</item>
-        <item>GYM</item>
         <item>B209</item>
         <item>F115</item>
         <item>B117</item>
@@ -174,13 +173,11 @@
         <item>A142</item>
         <item>B232</item>
         <item>B118</item>
-        <item>GYM</item>
         <item>P3</item>
         <item>A120</item>
         <item>A228</item>
         <item>A233</item>
         <item>B208</item>
-        <item>GYM</item>
         <item>B225</item>
         <item>E109</item>
         <item>A211</item>
@@ -188,7 +185,6 @@
         <item>A114</item>
         <item>P205</item>
         <item>F114</item>
-        <item>GYM</item>
         <item>P6</item>
         <item>B128/B148</item>
         <item>A133</item>
@@ -210,7 +206,6 @@
         <item>B228</item>
         <item>A129</item>
         <item>A131</item>
-        <item>GYM</item>
         <item>B233</item>
         <item>B211</item>
         <item>P111</item>
@@ -228,7 +223,6 @@
         <item>A118</item>
         <item>A226</item>
         <item>E101</item>
-        <item>GYM</item>
         <item>A225</item>
         <item>P11</item>
         <item>P100</item>
@@ -266,8 +260,6 @@
         <item>A230</item>
         <item>P8</item>
         <item>P9</item>
-        <item>GYM</item>
-        <item>GYM</item>
         <item>C112</item>
         <item>B213</item>
         <item>D101</item>
@@ -276,6 +268,7 @@
         <item>D101</item>
         <item>D104</item>
         <item>D101</item>
+
 
 
     </string-array>
