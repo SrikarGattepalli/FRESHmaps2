@@ -13,9 +13,12 @@ public class Mapper extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_map);
+
         String total = getIntent().getExtras().getString("total");
         ((TextView) findViewById(R.id.RoomDisplay)).setText(total);
+
         Button back = findViewById(R.id.BackButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,6 +28,8 @@ public class Mapper extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+
 
     }
 }
