@@ -17,10 +17,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that allows the user to search for a room
+ */
 public class searchByRoom extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
-    @Override
+    /**
+     * Method that is called in order to create the view and initialize the list of rooms
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_by_name);
@@ -32,7 +38,13 @@ public class searchByRoom extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teacherNames);
         byRoom.setAdapter(adapter);
         byRoom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+            /**
+             * Method that is called when a room number is clicked and searches for the corresponding Room object
+             * @param parent the adapter
+             * @param view the view where the item was clicked
+             * @param position the position in the list of the clicked item
+             * @param id the id of the clicked item
+             */
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String clickedRoom = parent.getItemAtPosition((int) id).toString();
                 School find = null;
@@ -86,14 +98,17 @@ public class searchByRoom extends AppCompatActivity {
                     intent.putExtra("total", clickedRoom + " is the classroom for the teacher: " + next.getTeacher());
                 }
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
             }
         });
 
     }
 
-    @Override
+    /**
+     * Method that creates a search bar and filters the items depending on input
+     * @param menu the menu
+     * @return false if searching needs to continue, true otherwise
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
@@ -102,12 +117,20 @@ public class searchByRoom extends AppCompatActivity {
         SearchView searchView = (SearchView) item.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
+            /**
+             * Method that is called when enter is clicked
+             * @param query the input in the search bar
+             * @return false if successful
+             */
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
-            @Override
+            /**
+             * method that filters the search list
+             * @param newText the text that has been inputted
+             * @return false if successful
+             */
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
 
@@ -115,12 +138,5 @@ public class searchByRoom extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

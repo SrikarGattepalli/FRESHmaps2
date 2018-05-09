@@ -16,11 +16,17 @@ import android.widget.SearchView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+/**
+ * Class that allows the user to search for a teacher form the list of all teachers
+ */
 public class searchByTeacher extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
     @Override
-
+    /**
+     * Method that is called to create the view and initialize the list of teachers
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_by_name);
@@ -74,14 +80,17 @@ public class searchByTeacher extends AppCompatActivity {
                 //based on item add info to intent
                 intent.putExtra("total", clickedName + " is in room " + next.getRoomNumber());
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
             }
         });
 
     }
 
-    @Override
+    /**
+     * Method that creates a search bar and filters the items depending on input
+     * @param menu the menu
+     * @return false if searching needs to continue, true otherwise
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
@@ -90,12 +99,20 @@ public class searchByTeacher extends AppCompatActivity {
         SearchView searchView = (SearchView) item.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
+            /**
+             * Method that is called when enter is clicked
+             * @param query the input in the search bar
+             * @return false if successful
+             */
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
-            @Override
+            /**
+             * method that filters the search list
+             * @param newText the text that has been inputted
+             * @return false if successful
+             */
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
 
@@ -103,13 +120,6 @@ public class searchByTeacher extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 

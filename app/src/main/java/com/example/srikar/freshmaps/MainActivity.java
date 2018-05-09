@@ -13,10 +13,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ * The main menu that changes the view to the one clicked
+ */
 public class MainActivity extends AppCompatActivity {
 
 
-    @Override
+    /**
+     * Method that creates the view and "listens" for a click and does the appropiate actions
+     * @param savedInstanceState the state of the app before the create call
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -24,14 +30,16 @@ public class MainActivity extends AppCompatActivity {
         Button name = (Button) findViewById(R.id.searchByTeacher);
         Button room = (Button) findViewById(R.id.searchByRoom);
         schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
+            /**
+             * Method that is called when a button is clicked
+             * @param view the view that was clicked
+             */
             public void onClick(View view) {
 
                 Intent startIntent = new Intent(getApplicationContext(), bellSchedule.class);
                 startActivity(startIntent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
-
         });
         room.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
-
-
     }
-
-
 
 }
