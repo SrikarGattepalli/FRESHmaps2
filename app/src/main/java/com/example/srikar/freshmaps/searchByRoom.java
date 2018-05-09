@@ -86,6 +86,7 @@ public class searchByRoom extends AppCompatActivity {
                     intent.putExtra("total", clickedRoom + " is the classroom for the teacher: " + next.getTeacher());
                 }
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
             }
         });
@@ -114,5 +115,12 @@ public class searchByRoom extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

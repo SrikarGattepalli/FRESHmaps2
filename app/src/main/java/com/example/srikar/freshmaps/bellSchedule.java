@@ -9,4 +9,14 @@ public class bellSchedule extends AppCompatActivity {
         setContentView(R.layout.bellschedule);
 
     }
-}
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+
+    }

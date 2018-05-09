@@ -74,6 +74,7 @@ public class searchByTeacher extends AppCompatActivity {
                 //based on item add info to intent
                 intent.putExtra("total", clickedName + " is in room " + next.getRoomNumber());
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
             }
         });
@@ -102,6 +103,13 @@ public class searchByTeacher extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 

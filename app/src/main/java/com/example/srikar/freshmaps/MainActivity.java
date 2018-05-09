@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
+
         });
         room.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 }
