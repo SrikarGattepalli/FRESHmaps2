@@ -16,11 +16,11 @@ import android.widget.SearchView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 public class searchByTeacher extends AppCompatActivity {
     ArrayAdapter<String> adapter;
-    //search
+
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_by_name);
@@ -41,14 +41,35 @@ public class searchByTeacher extends AppCompatActivity {
                 } catch (IOException e) {
                     Log.d("ERROR!!!", e.getMessage());
                 }
+                find.sortArraybyTeacher();
                 ArrayList<Room> a = find.getTotalSchool();
                 Room next = a.get(0);
-                for (Room b : a) {
-                    if (b.getTeacher().equals(clickedName)) {
-                        next = b;
-
+                int first = 0;
+                int last = a.size()-1;
+                while(first<last){
+                    if(last-first==1){
+                        if(a.get(first).getTeacher().equals(clickedName)) {
+                            next = a.get(first);
+                            last = first;
+                        }
+                        else{
+                            next=a.get(last);
+                            last=first;
+                        }
+                    }
+                    int mid = (first+last)/2;
+                    if(a.get(mid).getTeacher().equals(clickedName)){
+                        next = a.get(mid);
+                        break;
+                    }
+                    else if(a.get(mid).getTeacher().compareTo(clickedName)<0){
+                        first = mid;
+                    }
+                    else{
+                        last = mid;
                     }
                 }
+
                 Intent intent = new Intent(getApplicationContext(), Mapper.class);
                 //based on item add info to intent
                 intent.putExtra("total", clickedName + " is in room " + next.getRoomNumber());

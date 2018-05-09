@@ -30,16 +30,15 @@ public class Mapper extends AppCompatActivity {
 
                 Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(startIntent);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         });
 
-//        ImageButton mapButton = (ImageButton) findViewById(R.id.evhsMap);
-//        mapButton.setOnTouchListener(new View.OnTouchListener() {
-//            public boolean OnTouch(View v, MotionEvent event) {
-//
-//            }
-//        });
+        /*ImageButton mapButton = (ImageButton) findViewById(R.id.evhsMap);
+        mapButton.setOnTouchListener(new View.OnTouchListener() {
+            public boolean OnTouch(View v, MotionEvent event) {
+
+            }
+        });*/
 
     }
 }

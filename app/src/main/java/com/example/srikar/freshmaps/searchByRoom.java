@@ -42,17 +42,49 @@ public class searchByRoom extends AppCompatActivity {
                 } catch (IOException e) {
                     Log.d("ERROR!!!", e.getMessage());
                 }
+                find.sortArrayByRoom();
                 ArrayList<Room> a = find.getTotalSchool();
                 Room next = a.get(0);
-                for (Room b : a) {
-                    if (b.getRoomNumber().equals(clickedRoom)) {
-                        next = b;
-
+                int first = 0;
+                int last = a.size()-1;
+                while(first<last){
+                    if(last-first==1){
+                        if(a.get(first).getRoomNumber().equals(clickedRoom)) {
+                            next = a.get(first);
+                            last = first;
+                        }
+                        else{
+                            next=a.get(last);
+                            last=first;
+                        }
+                    }
+                    int mid = (first+last)/2;
+                    if(a.get(mid).getRoomNumber().equals(clickedRoom)){
+                        next = a.get(mid);
+                        break;
+                    }
+                    else if(a.get(mid).getRoomNumber().compareTo(clickedRoom)<0){
+                        first = mid;
+                    }
+                    else{
+                        last = mid;
                     }
                 }
                 Intent intent = new Intent(getApplicationContext(), Mapper.class);
                 //based on item add info to intent
-                intent.putExtra("total", clickedRoom + " is the classroom for the teacher: " + next.getTeacher());
+
+                if(clickedRoom.equals("GYM")){
+                    String gym="";
+                    for(Room r: a){
+                        if(r.getRoomNumber().equals("GYM")){
+                            gym+= "["+r.getTeacher()+"] ";
+                        }
+                    }
+                    intent.putExtra("total", clickedRoom + " is the classroom for the teachers: " +gym);
+                }
+                else{
+                    intent.putExtra("total", clickedRoom + " is the classroom for the teacher: " + next.getTeacher());
+                }
                 startActivity(intent);
 
             }
