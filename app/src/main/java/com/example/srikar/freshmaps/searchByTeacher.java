@@ -16,12 +16,11 @@ import android.widget.SearchView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 public class searchByTeacher extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
-    //Error with the GYM building and E. Multiple GYMs, so searching for GYM is actually the most useless thing ever since it only returns the first name (which is Wooden).
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_by_name);
