@@ -91,9 +91,11 @@ public class searchByRoom extends AppCompatActivity {
                             gym += "[" + r.getTeacher() + "] ";
                         }
                     }
-                    intent.putExtra("total", clickedRoom + " is the classroom for the teachers: " + gym);
+                    String[] total = {clickedRoom + " is the classroom for the teachers: " + gym, clickedRoom.substring(0, 1)};
+                    intent.putExtra("total", total);
                 } else {
-                    intent.putExtra("total", clickedRoom + " is the classroom for the teacher: " + next.getTeacher());
+                    String[] total = {clickedRoom + " is the classroom for the teacher: " + next.getTeacher(), clickedRoom.substring(0, 1)};
+                    intent.putExtra("total", total);
                 }
                 startActivity(intent);
 

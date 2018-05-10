@@ -31,8 +31,19 @@ public class Mapper extends AppCompatActivity {
 
         setContentView(R.layout.activity_map);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        String total = getIntent().getExtras().getString("total");
-        ((TextView) findViewById(R.id.RoomDisplay)).setText(total);
+        String[] total = getIntent().getExtras().getStringArray("total");
+        String total1 = total[0];
+        ((TextView) findViewById(R.id.RoomDisplay)).setText(total1);
+        String f = total[1].toLowerCase();
+        if (f.equals("a")) {
+            ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.amap);
+        } else if (f.equals("b")) {
+            ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.bmap);
+        } else if (f.equals("p")) {
+            ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.pmap);
+        } else if (f.equals("c")) {
+            ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.cmap);
+        }
 
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
