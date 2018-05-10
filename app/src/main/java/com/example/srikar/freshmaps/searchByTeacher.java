@@ -1,6 +1,7 @@
 package com.example.srikar.freshmaps;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class searchByTeacher extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_by_name);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ListView byTeacher = (ListView) findViewById(R.id.listViewTeacher);
         final ArrayList<String> teacherNames = new ArrayList<String>();
         teacherNames.addAll(Arrays.asList(getResources().getStringArray(R.array.teacherArray)));
@@ -51,27 +53,24 @@ public class searchByTeacher extends AppCompatActivity {
                 ArrayList<Room> a = find.getTotalSchool();
                 Room next = a.get(0);
                 int first = 0;
-                int last = a.size()-1;
-                while(first<last){
-                    if(last-first==1){
-                        if(a.get(first).getTeacher().equals(clickedName)) {
+                int last = a.size() - 1;
+                while (first < last) {
+                    if (last - first == 1) {
+                        if (a.get(first).getTeacher().equals(clickedName)) {
                             next = a.get(first);
                             last = first;
-                        }
-                        else{
-                            next=a.get(last);
-                            last=first;
+                        } else {
+                            next = a.get(last);
+                            last = first;
                         }
                     }
-                    int mid = (first+last)/2;
-                    if(a.get(mid).getTeacher().equals(clickedName)){
+                    int mid = (first + last) / 2;
+                    if (a.get(mid).getTeacher().equals(clickedName)) {
                         next = a.get(mid);
                         break;
-                    }
-                    else if(a.get(mid).getTeacher().compareTo(clickedName)<0){
+                    } else if (a.get(mid).getTeacher().compareTo(clickedName) < 0) {
                         first = mid;
-                    }
-                    else{
+                    } else {
                         last = mid;
                     }
                 }
@@ -88,11 +87,11 @@ public class searchByTeacher extends AppCompatActivity {
 
     /**
      * Method that creates a search bar and filters the items depending on input
+     *
      * @param menu the menu
      * @return false if searching needs to continue, true otherwise
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
