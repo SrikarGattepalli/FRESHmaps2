@@ -8,9 +8,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class that represents entire school and holds room objects
+ */
 public class School {
     private ArrayList<Room> totalSchool = new ArrayList<Room>();
 
+    /**
+     * Constructor that takes in file and fills ArrayList with Rooms
+     *
+     * @param fName the file holding the information about teachers and their rooms
+     */
     public School(InputStream fName) {
         Scanner scan = new Scanner(fName);
         while (scan.hasNext()) {
@@ -21,19 +29,35 @@ public class School {
 
     }
 
+    /**
+     * getter method for the ArrayList of classes
+     *
+     * @return the ArrayList that holds all the classes as Room objects
+     */
     public ArrayList<Room> getTotalSchool() {
         return totalSchool;
     }
 
+    /**
+     * Method that sorts the ArrayList of Rooms by teacher
+     */
     public void sortArraybyTeacher() {
-        totalSchool=mergeSortTeacher(totalSchool);
+        totalSchool = mergeSortTeacher(totalSchool);
     }
 
+    /**
+     * Method that sorts the ArrayList of Rooms by room number
+     */
     public void sortArrayByRoom() {
-        totalSchool=mergeSortRoom(totalSchool);
+        totalSchool = mergeSortRoom(totalSchool);
     }
 
-
+    /**
+     * Method that merge sorts a given ArrayList by teacher
+     *
+     * @param whole the ArrayLiost to be sorted
+     * @return the sorted ArrayList
+     */
     public ArrayList<Room> mergeSortTeacher(ArrayList<Room> whole) {
         ArrayList<Room> left = new ArrayList<Room>();
         ArrayList<Room> right = new ArrayList<Room>();
@@ -63,6 +87,14 @@ public class School {
         return whole;
     }
 
+    /**
+     * Method that merges two ArrayLists sorted by teacher name into one big sorted ArrayList by checking whether the first
+     * element in each ArrayList is smaller than the first element in the other and adding the smallest into the big ArrayList
+     *
+     * @param left  One of the sorted by teacher ArrayLists
+     * @param right One of the sorted by teacher ArrayList
+     * @param whole The ArrayList that will house the both sorted lists combined into a larger sorted ArrayList
+     */
     private void mergeTeacher(ArrayList<Room> left, ArrayList<Room> right, ArrayList<Room> whole) {
         int leftIndex = 0;
         int rightIndex = 0;
@@ -101,6 +133,12 @@ public class School {
         }
     }
 
+    /**
+     * Method that merge sorts a given ArrayList by room number
+     *
+     * @param whole the ArrayLiost to be sorted
+     * @return the sorted ArrayList
+     */
     public ArrayList<Room> mergeSortRoom(ArrayList<Room> whole) {
         ArrayList<Room> left = new ArrayList<Room>();
         ArrayList<Room> right = new ArrayList<Room>();
@@ -130,6 +168,14 @@ public class School {
         return whole;
     }
 
+    /**
+     * Method that merges two ArrayLists sorted by room number into one big sorted ArrayList by checking whether the first
+     * element in each ArrayList is smaller than the first element in the other and adding the smallest into the big ArrayList
+     *
+     * @param left  One of the sorted by rooom ArrayLists
+     * @param right One of the sorted by room ArrayLists
+     * @param whole The ArrayList that will house the both sorted lists combined into a larger sorted ArrayList
+     */
     private void mergeRoom(ArrayList<Room> left, ArrayList<Room> right, ArrayList<Room> whole) {
         int leftIndex = 0;
         int rightIndex = 0;
