@@ -76,7 +76,7 @@ public class searchByTeacher extends AppCompatActivity {
                 }
 
                 Intent intent = new Intent(getApplicationContext(), Mapper.class);
-                String[] total = {clickedName + " is in room " + next.getRoomNumber(), next.getRoomNumber().substring(0, 1)};
+                String[] total = {clickedName + " is in room " + next.getRoomNumber(), next.getRoomNumber()};
                 //based on item add info to intent
                 intent.putExtra("total", total);
                 startActivity(intent);
