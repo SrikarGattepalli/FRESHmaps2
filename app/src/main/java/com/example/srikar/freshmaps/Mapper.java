@@ -1,5 +1,6 @@
 package com.example.srikar.freshmaps;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.Image;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * View of map that states the room and its corresponding teacher(s) and allows for scrolling to look around the map
@@ -47,8 +49,16 @@ public class Mapper extends AppCompatActivity {
             digits = Integer.parseInt(total[1].substring(2, 4));
         }
 
-        final int x = 500, y = 500;
+        float x = 0, y = 0;
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        final int scaleF = 3;
+
         if (f.equals("p")) {
+            x = (int)(155  * scaleF);
+            y = (int)(305 * scaleF);
             if (total[1].length() == 2) {
                 if (l.equals("1")) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.p1map);
@@ -132,6 +142,8 @@ public class Mapper extends AppCompatActivity {
         } else if (f.equals("e")) {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.emap);
         } else if (f.equals("a")) {
+            x = (int)(355  * scaleF);
+            y = (int)(0 * scaleF);
             if (l.equals("2")) {
                 if (digits >= 8 && digits <= 18) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.atopleftmap);
@@ -149,6 +161,8 @@ public class Mapper extends AppCompatActivity {
                 }
             }
         } else if (f.equals("b")) {
+            x = (int)(245  * scaleF);
+            y = (int)(-305 * scaleF);
             if (l.equals("2")) {
                 if (digits >= 8 && digits <= 18) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.btopleftmap);
@@ -165,6 +179,8 @@ public class Mapper extends AppCompatActivity {
                 }
             }
         } else if (f.equals("c")) {
+            x = (int)(-50 * scaleF);
+            y = (int)(-105 * scaleF);
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.cmap);
         } else if (f.equals("f")) {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.fmap);
@@ -173,28 +189,28 @@ public class Mapper extends AppCompatActivity {
         }
 
         final ImageView main = (ImageView) findViewById(R.id.evhsMap);
-        boolean active = true;
+        final int dur = 2000;
+        final int posX = (int)x, posY = (int)y;
 
-        double currX = 0, currY = 0;
-        while (currX != x || currY != y && active) {
-            int xSp = (int) Math.copySign(1, x - currX);
-            int ySp = (int) Math.copySign(1, y - currY);
+        ArrayList<ObjectAnimator> anim = new ArrayList<ObjectAnimator>();
+        anim.add(ObjectAnimator.ofFloat(main, "x", -x));
+        anim.add(ObjectAnimator.ofFloat(main, "y", -y));
+        anim.add(ObjectAnimator.ofFloat(main, "scaleX", scaleF));
+        anim.add(ObjectAnimator.ofFloat(main, "scaleY", scaleF));
 
-            currX += xSp;
-            currY += ySp;
-            main.scrollBy(xSp, ySp);
+        //anim.add(ObjectAnimator.ofFloat(main, "x", x));
+        //anim.add(ObjectAnimator.ofFloat(main, "y", y));
+
+        Iterator<ObjectAnimator> iter = anim.iterator();
+        while(iter.hasNext()){
+            ObjectAnimator curr = iter.next();
+            curr.setDuration(dur);
+            curr.start();
         }
-        active = false;
-
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
 
         // set maximum scroll amount (based on center of image)
-        int maxX = (int) ((width * 2) - (width / 2));
-        int maxY = (int) ((height * 2) - (height / 2));
+        int maxX = (int) ((1800) - (width / 2));
+        int maxY = (int) ((1800) - (height / 2));
 
         // set scroll limits
         final int maxLeft = (maxX * -1);
@@ -205,7 +221,7 @@ public class Mapper extends AppCompatActivity {
         // set touchlistener
         main.setOnTouchListener(new View.OnTouchListener() {
             float downX, downY;
-            int totalX = x, totalY = y;
+            int totalX = posX / scaleF, totalY = posY / scaleF;
             int scrollByX, scrollByY;
             int storedX = 0, storedY = 0;
 
@@ -294,5 +310,24 @@ public class Mapper extends AppCompatActivity {
                 return true;
             }
         });
+
+        /**Button zoom = (Button) findViewById(R.id.zoombutton);
+        zoom.setOnTouchListener(new View.OnTouchListener(){
+
+            int changeZoom = 2;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                ObjectAnimator changeX = ObjectAnimator.ofFloat(main, "scaleX", -changeZoom);
+                ObjectAnimator changeY = ObjectAnimator.ofFloat(main, "scaleY", -changeZoom);
+                changeX.setDuration(dur);
+                changeY.setDuration(dur);
+                changeX.start();
+                changeY.start();
+
+                changeZoom = -changeZoom;
+                return true;
+            }
+        });
+            **/
     }
 }
