@@ -12,7 +12,7 @@ import java.io.InputStream;
  * Class to test the java classes
  */
 public class Tester {
-   /* public static void main(String[] args) {
+   /**public static void main(String[] args) {
         try {
             School test = new School(new InputStream() {
                 @Override
@@ -38,5 +38,5 @@ public class Tester {
         }
 
 
-    }*/
+    }**/
 }

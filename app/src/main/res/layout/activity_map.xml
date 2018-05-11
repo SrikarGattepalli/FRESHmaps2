@@ -53,8 +53,8 @@
 
     <ImageButton
         android:id="@+id/evhsMap"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="448dp"
         android:layout_marginBottom="22dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -66,9 +66,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RoomDisplay"
-        app:srcCompat="@mipmap/map"
 
-        />
+        app:srcCompat="@mipmap/map" />
 
 
 </android.support.constraint.ConstraintLayout>
