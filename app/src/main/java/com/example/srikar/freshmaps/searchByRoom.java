@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -58,47 +59,29 @@ public class searchByRoom extends AppCompatActivity {
                 }
                 find.sortArrayByRoom();
                 ArrayList<Room> a = find.getTotalSchool();
-                Room next = a.get(0);
-                int first = 0;
-                int last = a.size() - 1;
-                while (first < last) {
-                    if (last - first == 1) {
-                        if (a.get(first).getRoomNumber().equals(clickedRoom)) {
-                            next = a.get(first);
-                            last = first;
-                        } else {
-                            next = a.get(last);
-                            last = first;
+                String teachers = "";
+                Room next = null;
+                for (Room tra : a) {
+                    if (tra.hasTwoRooms()) {
+                        if (tra.getRoomNumber2().equals(clickedRoom) || tra.getRoomNumber1().equals(clickedRoom)) {
+                            teachers += "[" + tra.getTeacher() + "] ";
+
+
+                        }
+                    } else {
+                        if (tra.getRoomNumber1().equals(clickedRoom)) {
+                            teachers += "[" + tra.getTeacher() + "] ";
                         }
                     }
-                    int mid = (first + last) / 2;
-                    if (a.get(mid).getRoomNumber().equals(clickedRoom)) {
-                        next = a.get(mid);
-                        break;
-                    } else if (a.get(mid).getRoomNumber().compareTo(clickedRoom) < 0) {
-                        first = mid;
-                    } else {
-                        last = mid;
-                    }
                 }
+
                 Intent intent = new Intent(getApplicationContext(), Mapper.class);
                 //based on item add info to intent
 
-                if (clickedRoom.equals("GYM")) {
-                    String gym = "";
-                    for (Room r : a) {
-                        if (r.getRoomNumber().equals("GYM")) {
-                            gym += "[" + r.getTeacher() + "] ";
-                        }
-                    }
-                    String[] total = {clickedRoom + " is the classroom for the teachers: " + gym, clickedRoom};
-                    intent.putExtra("total", total);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                } else {
-                    String[] total = {clickedRoom + " is the classroom for the teacher: " + next.getTeacher(), clickedRoom};
-                    intent.putExtra("total", total);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                }
+
+                String[] total = {clickedRoom + " is the classroom for the teacher(s): ", clickedRoom, teachers};
+                intent.putExtra("total", total);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 startActivity(intent);
 
             }

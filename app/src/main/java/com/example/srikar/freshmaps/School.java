@@ -24,7 +24,11 @@ public class School {
         while (scan.hasNext()) {
             String name = scan.next() + " " + scan.next();
             String room = scan.next();
-            totalSchool.add(new Room(name, room));
+            if (room.indexOf('/') == -1) {
+                totalSchool.add(new Room(name, room));
+            } else {
+                totalSchool.add(new Room(name, room.substring(0, room.indexOf('/')), room.substring(room.indexOf('/') + 1)));
+            }
         }
 
     }
@@ -136,7 +140,7 @@ public class School {
     /**
      * Method that merge sorts a given ArrayList by room number
      *
-     * @param whole the ArrayLiost to be sorted
+     * @param whole the ArrayList to be sorted
      * @return the sorted ArrayList
      */
     public ArrayList<Room> mergeSortRoom(ArrayList<Room> whole) {
@@ -185,7 +189,7 @@ public class School {
         // been used up, keep taking the smaller of left.get(leftIndex)
         // or right.get(rightIndex) and adding it at both.get(bothIndex).
         while (leftIndex < left.size() && rightIndex < right.size()) {
-            if ((left.get(leftIndex).getRoomNumber().compareTo(right.get(rightIndex).getRoomNumber())) < 0) {
+            if ((left.get(leftIndex).getRoomNumber1().compareTo(right.get(rightIndex).getRoomNumber1())) < 0) {
                 whole.set(wholeIndex, left.get(leftIndex));
                 leftIndex++;
             } else {

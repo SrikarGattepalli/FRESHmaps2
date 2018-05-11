@@ -170,7 +170,7 @@
         <item>A212</item>
         <item>A213</item>
         <item>A214</item>
-        <item>A217/A120</item>
+        <item>A217</item>
         <item>A218</item>
         <item>A224</item>
         <item>A225</item>
@@ -180,7 +180,6 @@
         <item>A229</item>
         <item>A230</item>
         <item>A232</item>
-        <item>A232/A217</item>
         <item>A233</item>
         <item>B108</item>
         <item>B109</item>
@@ -192,18 +191,17 @@
         <item>B117</item>
         <item>B118</item>
         <item>B128</item>
-        <item>B128/B148</item>
         <item>B136</item>
         <item>B138</item>
         <item>B142</item>
         <item>B143</item>
+        <item>B148</item>
         <item>B149</item>
         <item>B208</item>
         <item>B209</item>
         <item>B210</item>
         <item>B211</item>
         <item>B212</item>
-        <item>B213</item>
         <item>B213</item>
         <item>B214</item>
         <item>B217</item>
@@ -215,15 +213,10 @@
         <item>B228</item>
         <item>B229</item>
         <item>B230</item>
-        <item>B230/B117</item>
         <item>B232</item>
         <item>B233</item>
         <item>C112</item>
-        <item>C112</item>
         <item>C113</item>
-        <item>D101</item>
-        <item>D101</item>
-        <item>D101</item>
         <item>D101</item>
         <item>D103</item>
         <item>D104</item>
@@ -248,7 +241,6 @@
         <item>P106</item>
         <item>P107</item>
         <item>P108</item>
-        <item>P11</item>
         <item>P11</item>
         <item>P111</item>
         <item>P12</item>
