@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
              */
             public void onClick(View view) {
                 schedule.startAnimation(buttonClick);
-                Intent startIntent = new Intent(getApplicationContext(), bellSchedule.class);
+                Intent startIntent = new Intent(getApplicationContext(), NewBellSchedule.class);
                 startActivity(startIntent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }

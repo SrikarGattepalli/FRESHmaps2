@@ -21,8 +21,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".searchByTeacher" />
-        <activity android:name=".searchByRoom"></activity>
-        <activity android:name=".bellSchedule"></activity>
+        <activity android:name=".searchByRoom" />
+        <activity
+            android:name=".NewBellSchedule"
+            android:label="@string/title_activity_new_bell_schedule"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

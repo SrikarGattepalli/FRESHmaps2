@@ -80,6 +80,7 @@ public class searchByTeacher extends AppCompatActivity {
                 //based on item add info to intent
                 intent.putExtra("total", total);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
