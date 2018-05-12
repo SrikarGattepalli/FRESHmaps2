@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ImageView;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -306,20 +307,16 @@ public class Mapper extends AppCompatActivity {
 
         final Button zoomIn = findViewById(R.id.zIn);
         final Button zoomOut = findViewById(R.id.zOut);
+        final int[] globalScale = new int[1];
+        globalScale[0] = 1;
 
         zoomIn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 4);
-                ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 4);
+                globalScale[0] = (globalScale[0] + 1 <= 4) ? globalScale[0] + 1 : globalScale[0];
 
-                zoomX.setDuration(2000);
-                zoomY.setDuration(2000);
-
-                zoomX.start();
-                zoomY.start();
-
+                performZoom(main, globalScale[0]);
                 zoomOut.setClickable(true);
                 zoomOut.setAlpha(1);
             }
@@ -329,19 +326,23 @@ public class Mapper extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-                ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 2);
-                ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 2);
-
-                zoomX.setDuration(2000);
-                zoomY.setDuration(2000);
-
-                zoomX.start();
-                zoomY.start();
+                globalScale[0] = (globalScale[0] - 1 >= 1) ? globalScale[0] - 1 : globalScale[0];
+                performZoom(main, globalScale[0]);
             }
         });
 
         zoomOut.setClickable(false);
         zoomOut.setAlpha(0);
+    }
+
+    public void performZoom(ImageView target, float scale){
+        ObjectAnimator zoomX = ObjectAnimator.ofFloat(target, "scaleX", scale);
+        ObjectAnimator zoomY = ObjectAnimator.ofFloat(target, "scaleY", scale);
+
+        zoomX.setDuration(2000);
+        zoomY.setDuration(2000);
+
+        zoomX.start();
+        zoomY.start();
     }
 }
