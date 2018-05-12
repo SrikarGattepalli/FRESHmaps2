@@ -190,14 +190,15 @@ public class Mapper extends AppCompatActivity {
 
         ArrayList<ObjectAnimator> anim = new ArrayList<ObjectAnimator>();
 
-        ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 1);
-        ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 1);
+        anim.add(ObjectAnimator.ofFloat(main, "scaleX", 1));
+        anim.add(ObjectAnimator.ofFloat(main, "scaleY", 1));
 
-        zoomX.setDuration(2000);
-        zoomY.setDuration(2000);
-
-        zoomX.start();
-        zoomY.start();
+        Iterator<ObjectAnimator> iter = anim.iterator();
+        while(iter.hasNext()){
+            ObjectAnimator curr = iter.next();
+            curr.setDuration(2000);
+            curr.start();
+        }
 
         // set maximum scroll amount (based on center of image)
         int maxX = (int) ((1300) - (width / 2));
