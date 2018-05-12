@@ -306,8 +306,6 @@ public class Mapper extends AppCompatActivity {
 
         final Button zoomIn = findViewById(R.id.zIn);
         final Button zoomOut = findViewById(R.id.zOut);
-        zoomOut.setClickable(false);
-        zoomOut.setAlpha(0);
 
         zoomIn.setOnClickListener(new View.OnClickListener() {
 
@@ -342,5 +340,8 @@ public class Mapper extends AppCompatActivity {
                 zoomY.start();
             }
         });
+
+        zoomOut.setClickable(false);
+        zoomOut.setAlpha(0);
     }
 }
