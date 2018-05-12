@@ -43,6 +43,21 @@ public class MainActivity extends AppCompatActivity {
         final Button name = (Button) findViewById(R.id.searchByTeacher);
         final Button room = (Button) findViewById(R.id.searchByRoom);
         final Button info = findViewById(R.id.info);
+        final Button phone = findViewById(R.id.phone);
+        phone.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Method that is called when a button is clicked
+             * @param view the view that was clicked
+             */
+            public void onClick(View view) {
+                phone.startAnimation(buttonClick);
+                Intent startIntent = new Intent(getApplicationContext(), Phone.class);
+                startActivity(startIntent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+
+            }
+        });
         info.setOnClickListener(new View.OnClickListener() {
             /**
              * Method that is called when a button is clicked

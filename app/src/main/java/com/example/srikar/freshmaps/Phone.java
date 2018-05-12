@@ -1,23 +1,24 @@
 package com.example.srikar.freshmaps;
 
 import android.content.pm.ActivityInfo;
-import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.view.animation.AlphaAnimation;
+import android.view.Window;
 import android.widget.TextView;
 
-public class Info extends AppCompatActivity {
-    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+public class Phone extends AppCompatActivity {
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        setContentView(R.layout.info_page);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        ((TextView) findViewById(R.id.instructions)).setMovementMethod(new ScrollingMovementMethod());
-        ((TextView) findViewById(R.id.instructions)).setKeyListener(null);
+        setContentView(R.layout.activity_phone);
+        ((TextView) findViewById(R.id.phone)).setMovementMethod(new ScrollingMovementMethod());
+        ((TextView) findViewById(R.id.phone)).setKeyListener(null);
     }
 }

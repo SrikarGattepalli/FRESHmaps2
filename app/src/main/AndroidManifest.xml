@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Mapper" />
         <activity android:name=".MainActivity">
-
             android:screenOrientation="portrait"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +26,8 @@
         <activity
             android:name=".NewBellSchedule"
             android:label="@string/title_activity_new_bell_schedule"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Phone"></activity>
     </application>
 
 </manifest>

@@ -231,6 +231,7 @@
         <item>F144</item>
         <item>F153</item>
         <item>GYM</item>
+        <item>Library</item>
         <item>P1</item>
         <item>P10</item>
         <item>P100</item>
@@ -298,4 +299,9 @@ If too lazy to scroll the list, Click on the Button in the top right and Search 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_new_bell_schedule">NewBellSchedule</string>
+    <string name="numbers">
+       "<b>Phone: </b>(408)347-7000\n<b>Anonymous Hotline: </b>(408)784-2408\n<b>Counseling Office: </b>(408)347-7082\n<b>Associate Principal (Marco Menendez):</b>(408)347-7140\n<b>Attendence for Last Name A-L: </b>(408)347-7171\n<b>Attendence for Last Name M-Z: </b>(408)347-7027"
+
+
+    </string>
 </resources>
