@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.DisplayMetrics;
@@ -37,6 +38,8 @@ public class Mapper extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_map);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         String[] total = getIntent().getExtras().getStringArray("total");
         String first = total[0];
@@ -62,7 +65,6 @@ public class Mapper extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int height = displayMetrics.heightPixels;
         final int width = displayMetrics.widthPixels;
-
 
 
         if (f.equals("p")) {
@@ -195,7 +197,7 @@ public class Mapper extends AppCompatActivity {
         anim.add(ObjectAnimator.ofFloat(main, "scaleY", 1));
 
         Iterator<ObjectAnimator> iter = anim.iterator();
-        while(iter.hasNext()){
+        while (iter.hasNext()) {
             ObjectAnimator curr = iter.next();
             curr.setDuration(2000);
             curr.start();
@@ -317,6 +319,10 @@ public class Mapper extends AppCompatActivity {
                 globalScale[0] = (globalScale[0] + 1 <= 4) ? globalScale[0] + 1 : globalScale[0];
 
                 performZoom(main, globalScale[0]);
+                if (globalScale[0] == 4) {
+                    zoomIn.setClickable(false);
+                    zoomIn.setAlpha(0);
+                }
                 zoomOut.setClickable(true);
                 zoomOut.setAlpha(1);
             }
@@ -328,6 +334,12 @@ public class Mapper extends AppCompatActivity {
             public void onClick(View v) {
                 globalScale[0] = (globalScale[0] - 1 >= 1) ? globalScale[0] - 1 : globalScale[0];
                 performZoom(main, globalScale[0]);
+                if (globalScale[0] == 1) {
+                    zoomOut.setClickable(false);
+                    zoomOut.setAlpha(0);
+                }
+                zoomIn.setClickable(true);
+                zoomIn.setAlpha(1);
             }
         });
 
@@ -335,7 +347,7 @@ public class Mapper extends AppCompatActivity {
         zoomOut.setAlpha(0);
     }
 
-    public void performZoom(ImageView target, float scale){
+    public void performZoom(ImageView target, float scale) {
         ObjectAnimator zoomX = ObjectAnimator.ofFloat(target, "scaleX", scale);
         ObjectAnimator zoomY = ObjectAnimator.ofFloat(target, "scaleY", scale);
 
