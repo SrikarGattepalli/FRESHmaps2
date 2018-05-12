@@ -188,10 +188,10 @@ public class Mapper extends AppCompatActivity {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.dmap);
         }
 
-        //main.scrollBy(x, y);
+        ArrayList<ObjectAnimator> anim = new ArrayList<ObjectAnimator>();
 
-        ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 2);
-        ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 2);
+        ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 1);
+        ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 1);
 
         zoomX.setDuration(2000);
         zoomY.setDuration(2000);
@@ -291,7 +291,7 @@ public class Mapper extends AppCompatActivity {
                         storedX += scrollByX;
                         storedY += scrollByY;
 
-                        Log.d("msg", scrollByX + " " + scrollByY);
+                        Log.d("msg", storedX + " " + storedY);
                         main.scrollBy(scrollByX, scrollByY);
                         downX = currentX;
                         downY = currentY;
@@ -310,8 +310,8 @@ public class Mapper extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 3);
-                ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 3);
+                ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 4);
+                ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 4);
 
                 zoomX.setDuration(2000);
                 zoomY.setDuration(2000);

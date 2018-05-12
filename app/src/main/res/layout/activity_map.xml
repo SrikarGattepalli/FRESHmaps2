@@ -46,10 +46,10 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:adjustViewBounds="false"
+        android:cropToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RoomDisplay"
         app:srcCompat="@mipmap/map" />
@@ -96,6 +96,14 @@
         app:layout_constraintEnd_toStartOf="@+id/RoomDisplay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="53dp"
+        android:layout_height="68dp"
+        app:srcCompat="@drawable/triangle1"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="43dp" />
 
 
 </android.support.constraint.ConstraintLayout>
