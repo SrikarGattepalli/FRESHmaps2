@@ -304,8 +304,10 @@ public class Mapper extends AppCompatActivity {
             }
         });
 
-        Button zoomIn = findViewById(R.id.zIn);
-        Button zoomOut = findViewById(R.id.zOut);
+        final Button zoomIn = findViewById(R.id.zIn);
+        final Button zoomOut = findViewById(R.id.zOut);
+        zoomOut.setClickable(false);
+        zoomOut.setAlpha(0);
 
         zoomIn.setOnClickListener(new View.OnClickListener() {
 
@@ -319,6 +321,9 @@ public class Mapper extends AppCompatActivity {
 
                 zoomX.start();
                 zoomY.start();
+
+                zoomOut.setClickable(true);
+                zoomOut.setAlpha(1);
             }
         });
 
@@ -326,6 +331,7 @@ public class Mapper extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
                 ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 2);
                 ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 2);
 
