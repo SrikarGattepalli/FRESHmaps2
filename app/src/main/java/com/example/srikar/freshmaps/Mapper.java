@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -54,20 +56,15 @@ public class Mapper extends AppCompatActivity {
 
         final ImageView main = (ImageView) findViewById(R.id.evhsMap);
 
-        float x = 0, y = 0;
+        int x = 0, y = 0;
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int height = displayMetrics.heightPixels;
         final int width = displayMetrics.widthPixels;
-        final int xHe = main.getHeight();
-        final int xSc = main.getWidth();
 
-        final int scaleF = 3;
-        final double r = xSc / 2640.0;
+
 
         if (f.equals("p")) {
-            x = (int)(155  * scaleF);
-            y = (int)(305 * scaleF);
             if (total[1].length() == 2) {
                 if (l.equals("1")) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.p1map);
@@ -151,8 +148,6 @@ public class Mapper extends AppCompatActivity {
         } else if (f.equals("e")) {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.emap);
         } else if (f.equals("a")) {
-            x = (int)(560 * r);
-            y = (int)(30 * r);
             if (l.equals("2")) {
                 if (digits >= 8 && digits <= 18) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.atopleftmap);
@@ -170,8 +165,6 @@ public class Mapper extends AppCompatActivity {
                 }
             }
         } else if (f.equals("b")) {
-            x = (int)(245  * scaleF);
-            y = (int)(-305 * scaleF);
             if (l.equals("2")) {
                 if (digits >= 8 && digits <= 18) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.btopleftmap);
@@ -188,8 +181,6 @@ public class Mapper extends AppCompatActivity {
                 }
             }
         } else if (f.equals("c")) {
-            x = (int)(-50 * scaleF);
-            y = (int)(-105 * scaleF);
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.cmap);
         } else if (f.equals("f")) {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.fmap);
@@ -197,33 +188,20 @@ public class Mapper extends AppCompatActivity {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.dmap);
         }
 
-        final int dur = 2000;
-        final int posX = (int)x, posY = (int)y;
+        //main.scrollBy(x, y);
 
-        ArrayList<ObjectAnimator> anim = new ArrayList<ObjectAnimator>();
-        anim.add(ObjectAnimator.ofFloat(main, "x", -x));
-        anim.add(ObjectAnimator.ofFloat(main, "y", -y));
+        ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 2);
+        ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 2);
 
-        //anim.add(ObjectAnimator.ofFloat(main, "pivotX", x / scaleF));
-        //anim.add(ObjectAnimator.ofFloat(main, "pivotY", -y / scaleF));
+        zoomX.setDuration(2000);
+        zoomY.setDuration(2000);
 
-        //anim.add(ObjectAnimator.ofFloat(main, "scaleX", scaleF));
-        //anim.add(ObjectAnimator.ofFloat(main, "scaleY", scaleF));
-
-
-        //anim.add(ObjectAnimator.ofFloat(main, "x", x));
-        //anim.add(ObjectAnimator.ofFloat(main, "y", y));
-
-        Iterator<ObjectAnimator> iter = anim.iterator();
-        while(iter.hasNext()){
-            ObjectAnimator curr = iter.next();
-            curr.setDuration(dur);
-            curr.start();
-        }
+        zoomX.start();
+        zoomY.start();
 
         // set maximum scroll amount (based on center of image)
-        int maxX = (int) ((1800) - (width / 2));
-        int maxY = (int) ((1800) - (height / 2));
+        int maxX = (int) ((1300) - (width / 2));
+        int maxY = (int) ((1400) - (height / 2));
 
         // set scroll limits
         final int maxLeft = (maxX * -1);
@@ -234,7 +212,7 @@ public class Mapper extends AppCompatActivity {
         // set touchlistener
         main.setOnTouchListener(new View.OnTouchListener() {
             float downX, downY;
-            int totalX = posX / scaleF, totalY = posY / scaleF;
+            int totalX = 0, totalY = 0;
             int scrollByX, scrollByY;
             int storedX = 0, storedY = 0;
 
@@ -242,7 +220,7 @@ public class Mapper extends AppCompatActivity {
 
                 float currentX, currentY;
 
-                switch (event.getAction()) {
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
                     case MotionEvent.ACTION_DOWN:
                         downX = event.getX();
                         downY = event.getY();
@@ -313,6 +291,7 @@ public class Mapper extends AppCompatActivity {
                         storedX += scrollByX;
                         storedY += scrollByY;
 
+                        Log.d("msg", scrollByX + " " + scrollByY);
                         main.scrollBy(scrollByX, scrollByY);
                         downX = currentX;
                         downY = currentY;
@@ -321,6 +300,39 @@ public class Mapper extends AppCompatActivity {
                 }
 
                 return true;
+            }
+        });
+
+        Button zoomIn = findViewById(R.id.zIn);
+        Button zoomOut = findViewById(R.id.zOut);
+
+        zoomIn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 3);
+                ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 3);
+
+                zoomX.setDuration(2000);
+                zoomY.setDuration(2000);
+
+                zoomX.start();
+                zoomY.start();
+            }
+        });
+
+        zoomOut.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ObjectAnimator zoomX = ObjectAnimator.ofFloat(main, "scaleX", 2);
+                ObjectAnimator zoomY = ObjectAnimator.ofFloat(main, "scaleY", 2);
+
+                zoomX.setDuration(2000);
+                zoomY.setDuration(2000);
+
+                zoomX.start();
+                zoomY.start();
             }
         });
     }
