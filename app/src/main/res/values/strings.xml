@@ -271,7 +271,30 @@
     <string name="tab_text_3">Tab 3</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="instructions">
+        "<b>User Manual for FRESHmaps</b>
 
+Trying to check when your class ends?
+Open FRESHmaps
+Click on Bell schedule
+Choose the type of Schedule depending on Day of the week and Month
+
+Don't know the room number but know the teacher’s Name?
+Open FRESHmaps
+Click on Teacher
+Scroll through the list and select teacher’s name
+If too lazy to scroll the list, Click on the Button in the top right and Search the teachers name
+
+Don’t know the Teacher’s Name but know the Room Number?
+Open FRESHmaps
+Click on Room
+Scroll through the list and Select the room number
+If too lazy to scroll the list, Click on the Button in the top right and Search the Room Number"
+
+
+
+
+    </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_new_bell_schedule">NewBellSchedule</string>

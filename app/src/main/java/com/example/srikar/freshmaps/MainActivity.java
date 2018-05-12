@@ -10,11 +10,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -40,6 +42,21 @@ public class MainActivity extends AppCompatActivity {
         final Button schedule = findViewById(R.id.bellSchedule);
         final Button name = (Button) findViewById(R.id.searchByTeacher);
         final Button room = (Button) findViewById(R.id.searchByRoom);
+        final Button info = findViewById(R.id.info);
+        info.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Method that is called when a button is clicked
+             * @param view the view that was clicked
+             */
+            public void onClick(View view) {
+                info.startAnimation(buttonClick);
+                Intent startIntent = new Intent(getApplicationContext(), Info.class);
+                startActivity(startIntent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+
+            }
+        });
         schedule.setOnClickListener(new View.OnClickListener() {
             /**
              * Method that is called when a button is clicked
