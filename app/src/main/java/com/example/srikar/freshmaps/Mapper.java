@@ -44,7 +44,10 @@ public class Mapper extends AppCompatActivity {
         String[] total = getIntent().getExtras().getStringArray("total");
         String first = total[0];
         String total1 = total[2];
-        ((Button) findViewById(R.id.RoomDisplay)).setText(Html.fromHtml(first + "<b>" + total1 + "</b"));
+
+        Button text = (Button) findViewById(R.id.RoomDisplay);
+        text.setText(Html.fromHtml(first + "<b>" + total1 + "</b"));
+        text.setClickable(false);
 
 
         String f = total[1].toLowerCase().substring(0, 1);
