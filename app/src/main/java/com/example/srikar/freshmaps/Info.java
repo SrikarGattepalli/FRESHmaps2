@@ -16,5 +16,6 @@ public class Info extends AppCompatActivity {
         actionBar.hide();
         setContentView(R.layout.info_page);
         ((TextView) findViewById(R.id.instructions)).setMovementMethod(new ScrollingMovementMethod());
+        ((TextView) findViewById(R.id.instructions)).setKeyListener(null);
     }
 }
