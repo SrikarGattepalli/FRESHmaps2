@@ -20,6 +20,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+/**
+ * Class that has all the bell schedules in different tabs
+ */
 public class NewBellSchedule extends AppCompatActivity {
 
     /**
@@ -37,6 +40,10 @@ public class NewBellSchedule extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    /**
+     * Method that creates the view and allows the user to switch between tabs
+     * @param savedInstanceState state of the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +75,11 @@ public class NewBellSchedule extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Method that creates the tabs that can  be selected
+     * @param menu the menu that has all the tabs
+     * @return true if successful
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -76,6 +87,11 @@ public class NewBellSchedule extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Method that acts when a tab is clicked
+     * @param item the item clicked
+     * @return true if successful
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -103,33 +119,42 @@ public class NewBellSchedule extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-           switch(position){
-               case 0:
-                   Tab1Regular tab1 = new Tab1Regular();
-                   return  tab1;
-               case 1:
-                   Tab2Minimum tab2 = new Tab2Minimum();
-                   return tab2;
-               case 2:
-                   Tab3Liaison tab3 = new Tab3Liaison();
-                   return tab3;
-               default:
-                   return null;
-           }
+            switch(position){
+                case 0:
+                    Tab1Regular tab1 = new Tab1Regular();
+                    return  tab1;
+                case 1:
+                    Tab2Minimum tab2 = new Tab2Minimum();
+                    return tab2;
+                case 2:
+                    Tab3Liaison tab3 = new Tab3Liaison();
+                    return tab3;
+                default:
+                    return null;
+            }
         }
 
+        /**
+         * Getter method for the number of pages/tabs
+         * @return the number of tabs
+         */
         @Override
         public int getCount() {
             // Show 3 total pages.
             return 3;
         }
 
+        /**
+         * Method that returns the title of each tab
+         * @param position the index of the tab
+         * @return the title of the tab at the given location
+         */
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
             switch(position){
                 case 0:
-                   return "REGULAR";
+                    return "REGULAR";
                 case 1:
                     return "MINIMUM";
                 case 2:

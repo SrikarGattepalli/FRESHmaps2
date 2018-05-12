@@ -20,6 +20,12 @@ public class Room {
         this.roomNumber1 = roomNumber1;
     }
 
+    /**
+     * Constructor that initializes the name of the teacher and two classrooms
+     * @param teacher the name of the teacher
+     * @param roomNumber1 the first room number
+     * @param roomNumber2 the second room number
+     */
     public Room(String teacher, String roomNumber1, String roomNumber2) {
         this.teacher = teacher;
         this.roomNumber1 = roomNumber1;
@@ -45,10 +51,18 @@ public class Room {
         return roomNumber1;
     }
 
+    /**
+     * Method that checks whether the teacher has two classrooms or not
+     * @return true if the teacher has two classes, false otherwise
+     */
     public boolean hasTwoRooms() {
         return roomNumber2 != null;
     }
 
+    /**
+     * Getter method for second classroom
+     * @return the rooom number of the second classroom
+     */
     public String getRoomNumber2() {
         return roomNumber2;
     }

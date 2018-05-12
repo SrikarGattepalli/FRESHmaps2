@@ -18,6 +18,7 @@ import android.widget.SearchView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * Class that allows the user to search for a room
@@ -61,7 +62,9 @@ public class searchByRoom extends AppCompatActivity {
                 ArrayList<Room> a = find.getTotalSchool();
                 String teachers = "";
                 Room next = null;
-                for (Room tra : a) {
+                Iterator iter = a.iterator();
+                while (iter.hasNext()) {
+                    Room tra = (Room) iter.next();
                     if (tra.hasTwoRooms()) {
                         if (tra.getRoomNumber2().equals(clickedRoom) || tra.getRoomNumber1().equals(clickedRoom)) {
                             teachers += "[" + tra.getTeacher() + "] ";
@@ -73,7 +76,9 @@ public class searchByRoom extends AppCompatActivity {
                             teachers += "[" + tra.getTeacher() + "] ";
                         }
                     }
+
                 }
+
 
                 Intent intent = new Intent(getApplicationContext(), Mapper.class);
                 //based on item add info to intent

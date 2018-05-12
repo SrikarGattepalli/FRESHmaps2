@@ -16,17 +16,25 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
+/**
+ * Tab that holds the schedule for a normal bell schedule at EVHS
+ */
 public class Tab1Regular extends Fragment{
 
     String periodItems[] = {"Period 1", "Period 2", "Period 3", "Break", "4th Period",
-                            "5th Period", "Lunch", "6th Period", "7th Period"};
+            "5th Period", "Lunch", "6th Period", "7th Period"};
 
     String periodTimes[] = {"7:15 – 8:10", "8:15 – 9:15", "9:20 – 10:15", "10:15 – 10:30",
-                            "10:35 – 11:30", "11:35 – 12:30","12:30 – 1:00", "1:05 – 2:00",
-                            "2:05‐3:00"};
+            "10:35 – 11:30", "11:35 – 12:30","12:30 – 1:00", "1:05 – 2:00",
+            "2:05‐3:00"};
 
-
+    /**
+     * Method that creates the tab within the appropiate view
+     * @param inflater manipulator of XML layouts
+     * @param container the view group where the tab witll be located
+     * @param savedInstanceState the state of the app
+     * @return the tab view of the schedule
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,8 +57,14 @@ public class Tab1Regular extends Fragment{
         return view;
     }
 
+    /**
+     * Class that reads the arrays that hold the information on the schedule
+     */
     class CustomAdapter extends BaseAdapter{
-
+        /**
+         * Getter methiod for the length of the array
+         * @return the length of the read in array
+         */
         @Override
         public int getCount() {
             return periodItems.length;
@@ -66,6 +80,13 @@ public class Tab1Regular extends Fragment{
             return 0;
         }
 
+        /**
+         * Method that sets the text of the view to the schedule
+         * @param position the position of the wanted period and time
+         * @param convertView the view where the text will be set
+         * @param parent the group of views where the view is located
+         * @return the view with the updated text to fit the schedule
+         */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
