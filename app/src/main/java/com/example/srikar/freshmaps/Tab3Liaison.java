@@ -22,7 +22,7 @@ import android.widget.TextView;
 public class Tab3Liaison extends Fragment{
 
     String periodItems[] = {"Period 1", "Period 2", "Period 3", "Break", "4th Period",
-            "5th Period", "Lunch", "6th Period", "7th Period"};
+            "Liason" + "\n" + "5th Period", "Lunch", "6th Period", "7th Period"};
 
     String periodTimes[] = {"7:15 – 8:10", "8:15 – 9:10", "9:15 – 10:05", "10:05 – 10:20",
             "10:25 – 11:15", "11:20 – 11:50\n" +

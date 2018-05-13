@@ -24,7 +24,7 @@ public class Tab2Minimum extends Fragment{
     String periodItems[] = {"Period 1", "Period 2", "Period 3", "Break", "4th Period",
             "5th Period", "Lunch", "6th Period", "7th Period"};
 
-    String periodTimes[] = {"7:30– 8:10", "8:15 – 9:05", "9:05‐9:45", "9:45‐10:00",
+    String periodTimes[] = {"7:30– 8:10", "8:15 – 9:00", "9:05‐9:45", "9:45‐10:00",
             "10:05 – 10:45", "10:50‐11:30","11:30‐12:00", "12:05‐12:45",
             "12:50‐1:30"};
 
