@@ -46,14 +46,6 @@ public class Tab3Liaison extends Fragment{
         CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
 
-//        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-//                getActivity(),
-//                android.R.layout.simple_list_item_1,
-//                periodItems
-//        );
-//
-//        listView.setAdapter(listViewAdapter);
-
         return view;
     }
     /**
