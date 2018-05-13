@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.DisplayMetrics;
@@ -37,19 +36,15 @@ public class Mapper extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //creating view and setting text to teacher and room(s)
         setContentView(R.layout.activity_map);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         String[] total = getIntent().getExtras().getStringArray("total");
         String first = total[0];
         String total1 = total[2];
+        ((TextView) findViewById(R.id.RoomDisplay)).setText(Html.fromHtml(first + "<b>" + total1 + "</b"));
 
-        Button text = (Button) findViewById(R.id.RoomDisplay);
-        text.setText(Html.fromHtml(first + "<b>" + total1 + "</b"));
-        text.setClickable(false);
-
-
+        //Obtaining the building number(first character) and room number(rest of string) from the selected room
         String f = total[1].toLowerCase().substring(0, 1);
         String l = "";
         if (total[1].length() > 1) {
@@ -69,8 +64,11 @@ public class Mapper extends AppCompatActivity {
         final int height = displayMetrics.heightPixels;
         final int width = displayMetrics.widthPixels;
 
-        //checks for room, finds image that contains
+
+        //checking for the building and room numbers to highlight the correct area of the map
+        //checking for portables or p building
         if (f.equals("p")) {
+            //Checking for the exact portable unit
             if (total[1].length() == 2) {
                 if (l.equals("1")) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.p1map);
@@ -123,6 +121,7 @@ public class Mapper extends AppCompatActivity {
                     }
 
                 } else {
+                    //If proven to be p building, checks to see which part of p building the room is
                     digits = Integer.parseInt(total[1].substring(1, 4));
                     if (digits == 101 || digits == 105 || digits == 107 || digits == 111) {
                         ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.pbottombottommap);
@@ -148,12 +147,15 @@ public class Mapper extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.p12map);
 
             }
-
+            //checking for odd buildings of e and g
         } else if (f.equals("g")) {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.gmap);
         } else if (f.equals("e")) {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.emap);
-        } else if (f.equals("a")) {
+        }
+        // checking for a building
+        else if (f.equals("a")) {
+            // checking whether the room is on the second or first floor and then whether it is on the right or left side of the building
             if (l.equals("2")) {
                 if (digits >= 8 && digits <= 18) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.atopleftmap);
@@ -170,7 +172,10 @@ public class Mapper extends AppCompatActivity {
 
                 }
             }
-        } else if (f.equals("b")) {
+        }
+        //Checking for b building
+        else if (f.equals("b")) {
+            // checking whether the room is on the second or first floor and then whether it is on the right or left side of the building
             if (l.equals("2")) {
                 if (digits >= 8 && digits <= 18) {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.btopleftmap);
@@ -186,7 +191,9 @@ public class Mapper extends AppCompatActivity {
                     ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.bbottomrightmap);
                 }
             }
-        } else if (f.equals("c")) {
+        }
+        //more buildings that don't require in depth highlighting
+        else if (f.equals("c")) {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.cmap);
         } else if (f.equals("f")) {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.fmap);
@@ -194,7 +201,7 @@ public class Mapper extends AppCompatActivity {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.dmap);
         }
 
-        //initial animation & zoom set
+        //Creation of objects that will scale up or down the map
         ArrayList<ObjectAnimator> anim = new ArrayList<ObjectAnimator>();
 
         anim.add(ObjectAnimator.ofFloat(main, "scaleX", 1));
@@ -224,6 +231,12 @@ public class Mapper extends AppCompatActivity {
             int scrollByX, scrollByY;
             int storedX = 0, storedY = 0;
 
+            /**
+             * Method that tracks the the finger as it presses the mapo and moves and scrolls accordingly
+             * @param view the view where the screen was pressed
+             * @param event the touch followed by movement
+             * @return true when complete (used to allow for breaks and thus constant updating)
+             */
             public boolean onTouch(View view, MotionEvent event) {
 
                 float currentX, currentY;
@@ -240,7 +253,7 @@ public class Mapper extends AppCompatActivity {
                         scrollByX = (int) (downX - currentX);
                         scrollByY = (int) (downY - currentY);
 
-                        // scrolling to left side, checks for boundary
+                        // scrolling to left side of image (pic moving to the right)
                         if (currentX > downX) {
                             if (totalX == maxLeft) {
                                 scrollByX = 0;
@@ -254,7 +267,7 @@ public class Mapper extends AppCompatActivity {
                             }
                         }
 
-                        // scrolling to right side, checks for boundary
+                        // scrolling to right side of image (pic moving to the left)
                         if (currentX < downX) {
                             if (totalX == maxRight) {
                                 scrollByX = 0;
@@ -268,7 +281,7 @@ public class Mapper extends AppCompatActivity {
                             }
                         }
 
-                        // scrolling to top of image, checks for boundary
+                        // scrolling to top of image (pic moving to the bottom)
                         if (currentY > downY) {
                             if (totalY == maxTop) {
                                 scrollByY = 0;
@@ -282,7 +295,7 @@ public class Mapper extends AppCompatActivity {
                             }
                         }
 
-                        // scrolling to bottom of image, checks for boundary
+                        // scrolling to bottom of image (pic moving to the top)
                         if (currentY < downY) {
                             if (totalY == maxBottom) {
                                 scrollByY = 0;
@@ -299,28 +312,31 @@ public class Mapper extends AppCompatActivity {
                         storedX += scrollByX;
                         storedY += scrollByY;
 
+                        Log.d("msg", storedX + " " + storedY);
                         main.scrollBy(scrollByX, scrollByY);
                         downX = currentX;
                         downY = currentY;
                         break;
+
                 }
+
                 return true;
             }
         });
-
-        //defines zoom variables and button objects
+        // zoom button initialization
         final Button zoomIn = findViewById(R.id.zIn);
         final Button zoomOut = findViewById(R.id.zOut);
         final int[] globalScale = new int[1];
         globalScale[0] = 1;
 
         zoomIn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
             /**
-             * Method that defines click characteristics of a zoomIn button.
-             * @param v view the button is applied to, higher class. (this method is not called within this class)
+             * Method that is called when the zoomOut button is pressed. It will increase the scale fo the image
+             * by 1 and allow the zoomIn button to be clicked. If the scale increases to 4, the zoomOut button
+             * is made invisible
+             * @param v the view where the button was clicked
              */
+            @Override
             public void onClick(View v) {
                 globalScale[0] = (globalScale[0] + 1 <= 4) ? globalScale[0] + 1 : globalScale[0];
 
@@ -335,11 +351,13 @@ public class Mapper extends AppCompatActivity {
         });
 
         zoomOut.setOnClickListener(new View.OnClickListener() {
-            @Override
             /**
-             * Method that defines click characteristics of a zoomOut button.
-             * @param v view the button is applied to, higher class. (this method is not called within this class)
+             * Method that is called when the zoomIn button is pressed. It will decrease the scale fo the image
+             * by 1 and allow the zoomOut button to be clicked. If the scale decreases to 1, the zoomIn button
+             * is made invisible
+             * @param v the view where the button was clicked
              */
+            @Override
             public void onClick(View v) {
                 globalScale[0] = (globalScale[0] - 1 >= 1) ? globalScale[0] - 1 : globalScale[0];
                 performZoom(main, globalScale[0]);
@@ -357,9 +375,10 @@ public class Mapper extends AppCompatActivity {
     }
 
     /**
-     * Method that supports a basic zoom for an ImageView object.
-     * @param target imageview to be zoomed
-     * @param scale the final zoom value (in this case, recognized as scale)
+     * Method that resizes the target image to the appropiate scale
+     *
+     * @param target the target image to be scaled
+     * @param scale  the scale the image will be resized to
      */
     public void performZoom(ImageView target, float scale) {
         ObjectAnimator zoomX = ObjectAnimator.ofFloat(target, "scaleX", scale);

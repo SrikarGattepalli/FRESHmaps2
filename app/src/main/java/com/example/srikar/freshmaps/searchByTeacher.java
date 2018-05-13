@@ -26,7 +26,8 @@ public class searchByTeacher extends AppCompatActivity {
 
     @Override
     /**
-     * Method that is called to create the view and initialize the list of teachers
+     * Method that is called to create the view and initialize the list of teachers. Later, the method calls the Mapper activity to display the room for this teacher.
+     * @param savedInstanceState initial state of the app
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,17 @@ public class searchByTeacher extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teacherNames);
         byTeacher.setAdapter(adapter);
         byTeacher.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * Handles the consecutive actions once a teacher's name is selected from the list.
+             * @param parent
+             *              - the adapter view that is used for thsi list view.
+             * @param view
+             *              - the exact view object that was clicked.
+             * @param position
+             *              - the position of the view/teacher's name that was clicked
+             * @param id
+             *              - the id of the view/teacher's name that was clicked.
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String clickedName = parent.getItemAtPosition((int) id).toString();
@@ -50,12 +62,41 @@ public class searchByTeacher extends AppCompatActivity {
                     Log.d("ERROR!!!", e.getMessage());
                 }
                 find.sortArraybyTeacher();
+                ArrayList<Room> a = find.getTotalSchool();
+                Room next = a.get(0);
+                int first = 0;
+                int last = a.size() - 1;
+                while (first < last) {
+                    if (last - first == 1) {
+                        if (a.get(first).getTeacher().equals(clickedName)) {
+                            next = a.get(first);
+                            last = first;
+                        } else {
+                            next = a.get(last);
+                            last = first;
+                        }
+                    }
+                    int mid = (first + last) / 2;
+                    if (a.get(mid).getTeacher().equals(clickedName)) {
+                        next = a.get(mid);
+                        break;
+                    } else if (a.get(mid).getTeacher().compareTo(clickedName) < 0) {
+                        first = mid;
+                    } else {
+                        last = mid;
+                    }
+                }
 
                 Intent intent = new Intent(getApplicationContext(), Mapper.class);
-
+                String d = "";
+                if (next.hasTwoRooms()) {
+                    d = next.getRoomNumber1() + "/" + next.getRoomNumber2();
+                } else {
+                    d = next.getRoomNumber1();
+                }
+                String[] total = {clickedName + " is in room ", d, d};
                 //based on item add info to intent
-                Log.d("mg", clickedName);
-                intent.putExtra("total", find.getRoomsByTeacher(clickedName));
+                intent.putExtra("total", total);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }

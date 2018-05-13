@@ -231,7 +231,6 @@
         <item>F144</item>
         <item>F153</item>
         <item>GYM</item>
-        <item>Library</item>
         <item>P1</item>
         <item>P10</item>
         <item>P100</item>
@@ -304,5 +303,4 @@ If too lazy to scroll the list, Click on the Button in the top right and Search 
 
 
     </string>
-    <string name="title_activity_debug">Debug</string>
 </resources>

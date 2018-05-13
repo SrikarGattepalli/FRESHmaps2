@@ -8,8 +8,15 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Window;
 import android.widget.TextView;
 
+/**
+ * This is the class for the activity of the phone numbers of EVHS.
+ */
 public class Phone extends AppCompatActivity {
-
+    /**
+     * onCreate method to handle popping up the phone numbers when the activity is created/started.
+     *
+     * @param savedInstanceState state of the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
+        <TextView
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,8 @@
             android:singleLine="false"
             android:text="@string/numbers"
 
-            />
+            android:textSize="14sp"
+            android:typeface="monospace" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

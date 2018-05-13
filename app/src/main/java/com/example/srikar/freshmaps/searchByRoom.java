@@ -59,15 +59,36 @@ public class searchByRoom extends AppCompatActivity {
                     Log.d("ERROR!!!", e.getMessage());
                 }
                 find.sortArrayByRoom();
+                ArrayList<Room> a = find.getTotalSchool();
+                String teachers = "";
+                Room next = null;
+                Iterator iter = a.iterator();
+                while (iter.hasNext()) {
+                    Room tra = (Room) iter.next();
+                    if (tra.hasTwoRooms()) {
+                        if (tra.getRoomNumber2().equals(clickedRoom) || tra.getRoomNumber1().equals(clickedRoom)) {
+                            teachers += "[" + tra.getTeacher() + "] ";
+
+
+                        }
+                    } else {
+                        if (tra.getRoomNumber1().equals(clickedRoom)) {
+                            teachers += "[" + tra.getTeacher() + "] ";
+                        }
+                    }
+
+                }
+
 
                 Intent intent = new Intent(getApplicationContext(), Mapper.class);
                 //based on item add info to intent
 
 
-                String[] total = {clickedRoom + " is the classroom for the teacher(s): ", clickedRoom, find.getTeachersByRoom(clickedRoom)};
+                String[] total = {clickedRoom + " is the classroom for the teacher(s): ", clickedRoom, teachers};
                 intent.putExtra("total", total);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 startActivity(intent);
+
 
             }
         });

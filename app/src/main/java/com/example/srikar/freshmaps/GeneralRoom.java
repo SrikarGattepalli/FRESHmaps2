@@ -1,5 +1,8 @@
 package com.example.srikar.freshmaps;
 
+/**
+ * Abstract class to define any kind of building or room within a school campus
+ */
 public abstract class GeneralRoom {
     private String roomNumber1;
 
@@ -15,6 +18,11 @@ public abstract class GeneralRoom {
         return roomNumber1;
     }
 
+    /**
+     * Setter method for the room number
+     * @param a
+     *         - room number
+     */
     public void setRoomNumber1(String a) {
         roomNumber1 = a;
     }
