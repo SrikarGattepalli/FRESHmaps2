@@ -18,7 +18,7 @@ public class Tester {
 
     /**
      * Default Constructor that takes in a context where it is called.
-     * @param cont
+     * @param cont current context for the activity
      */
     public Tester(Context cont){
        context = cont;
