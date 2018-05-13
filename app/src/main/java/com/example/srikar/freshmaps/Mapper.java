@@ -69,7 +69,7 @@ public class Mapper extends AppCompatActivity {
         final int height = displayMetrics.heightPixels;
         final int width = displayMetrics.widthPixels;
 
-
+        //checks for room, finds image that contains
         if (f.equals("p")) {
             if (total[1].length() == 2) {
                 if (l.equals("1")) {
@@ -194,6 +194,7 @@ public class Mapper extends AppCompatActivity {
             ((ImageView) findViewById(R.id.evhsMap)).setImageResource(R.mipmap.dmap);
         }
 
+        //initial animation & zoom set
         ArrayList<ObjectAnimator> anim = new ArrayList<ObjectAnimator>();
 
         anim.add(ObjectAnimator.ofFloat(main, "scaleX", 1));
@@ -239,7 +240,7 @@ public class Mapper extends AppCompatActivity {
                         scrollByX = (int) (downX - currentX);
                         scrollByY = (int) (downY - currentY);
 
-                        // scrolling to left side of image (pic moving to the right)
+                        // scrolling to left side, checks for boundary
                         if (currentX > downX) {
                             if (totalX == maxLeft) {
                                 scrollByX = 0;
@@ -253,7 +254,7 @@ public class Mapper extends AppCompatActivity {
                             }
                         }
 
-                        // scrolling to right side of image (pic moving to the left)
+                        // scrolling to right side, checks for boundary
                         if (currentX < downX) {
                             if (totalX == maxRight) {
                                 scrollByX = 0;
@@ -267,7 +268,7 @@ public class Mapper extends AppCompatActivity {
                             }
                         }
 
-                        // scrolling to top of image (pic moving to the bottom)
+                        // scrolling to top of image, checks for boundary
                         if (currentY > downY) {
                             if (totalY == maxTop) {
                                 scrollByY = 0;
@@ -281,7 +282,7 @@ public class Mapper extends AppCompatActivity {
                             }
                         }
 
-                        // scrolling to bottom of image (pic moving to the top)
+                        // scrolling to bottom of image, checks for boundary
                         if (currentY < downY) {
                             if (totalY == maxBottom) {
                                 scrollByY = 0;
@@ -298,18 +299,16 @@ public class Mapper extends AppCompatActivity {
                         storedX += scrollByX;
                         storedY += scrollByY;
 
-                        Log.d("msg", storedX + " " + storedY);
                         main.scrollBy(scrollByX, scrollByY);
                         downX = currentX;
                         downY = currentY;
                         break;
-
                 }
-
                 return true;
             }
         });
 
+        //defines zoom variables and button objects
         final Button zoomIn = findViewById(R.id.zIn);
         final Button zoomOut = findViewById(R.id.zOut);
         final int[] globalScale = new int[1];
@@ -318,6 +317,10 @@ public class Mapper extends AppCompatActivity {
         zoomIn.setOnClickListener(new View.OnClickListener() {
 
             @Override
+            /**
+             * Method that defines click characteristics of a zoomIn button.
+             * @param v view the button is applied to, higher class. (this method is not called within this class)
+             */
             public void onClick(View v) {
                 globalScale[0] = (globalScale[0] + 1 <= 4) ? globalScale[0] + 1 : globalScale[0];
 
@@ -332,8 +335,11 @@ public class Mapper extends AppCompatActivity {
         });
 
         zoomOut.setOnClickListener(new View.OnClickListener() {
-
             @Override
+            /**
+             * Method that defines click characteristics of a zoomOut button.
+             * @param v view the button is applied to, higher class. (this method is not called within this class)
+             */
             public void onClick(View v) {
                 globalScale[0] = (globalScale[0] - 1 >= 1) ? globalScale[0] - 1 : globalScale[0];
                 performZoom(main, globalScale[0]);
@@ -350,6 +356,11 @@ public class Mapper extends AppCompatActivity {
         zoomOut.setAlpha(0);
     }
 
+    /**
+     * Method that supports a basic zoom for an ImageView object.
+     * @param target imageview to be zoomed
+     * @param scale the final zoom value (in this case, recognized as scale)
+     */
     public void performZoom(ImageView target, float scale) {
         ObjectAnimator zoomX = ObjectAnimator.ofFloat(target, "scaleX", scale);
         ObjectAnimator zoomY = ObjectAnimator.ofFloat(target, "scaleY", scale);
