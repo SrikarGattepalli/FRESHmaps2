@@ -1,5 +1,6 @@
 package com.example.srikar.freshmaps;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -13,29 +14,41 @@ import java.io.InputStream;
  * Class to test the java classes
  */
 public class Tester {
-   public static void main(String[] args) {
-        try {
-            School test = new School(new InputStream() {
-                @Override
-                public int read() throws IOException {
-                    return 0;
-                }
-            });
-            for (Room r : test.getTotalSchool()) {
-                Log.d("testProgram", r.getTeacher() + "    " + r.getRoomNumber1());
+    Context context;
+    public Tester(Context cont){
+       context = cont;
+    }
+
+    public String test(){
+       String output = "";
+
+       try {
+
+            School main = new School(context.getAssets().open("teacherNames.txt"));
+            output += "\tRaw-----------------------------------------------------------------------------------------\n";
+            for (Room r : main.getTotalSchool()) {
+                output += r.getTeacher() + "    " + r.getRoomNumber1() + "\n";
             }
-            System.out.println();
-            test.sortArrayByRoom();
-            for (Room r : test.getTotalSchool()) {
-                Log.d("testProgram", r.getTeacher() + "    " + r.getRoomNumber1());
+
+            main.sortArrayByRoom();
+            output += "\tSorting By Room-----------------------------------------------------------------------------\n";
+            for (Room r : main.getTotalSchool()) {
+                output += r.getTeacher() + "    " + r.getRoomNumber1() + "\n";
             }
-            System.out.println();
-            test.sortArraybyTeacher();
-            for (Room r : test.getTotalSchool()) {
-                Log.d("testProgram", r.getTeacher() + "    " + r.getRoomNumber1());
+            main.sortArraybyTeacher();
+            output += "\tSorting by teacher--------------------------------------------------------------------------\n";
+            for (Room r : main.getTotalSchool()) {
+                output += r.getTeacher() + "    " + r.getRoomNumber1() + "\n";
             }
+
+            output += "\tManual test for getting teacher/room--------------------------------------------------------------------------\n";
+            output += "Room F115 is in use by " + main.getTeachersByRoom("F115") + "\n";
+            output += "The Gym is in use by " + main.getTeachersByRoom("GYM") + "\n";
+            output += "Room B138 is in use by " + main.getTeachersByRoom("B138") + "\n";
+
         } catch (Exception e) {
-            System.out.println("woops");
+            output = e.getMessage();
         }
+        return output;
     }
 }

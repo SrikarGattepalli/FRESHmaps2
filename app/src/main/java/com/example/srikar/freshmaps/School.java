@@ -1,11 +1,14 @@
 package com.example.srikar.freshmaps;
 
+import android.content.Intent;
+
 import com.example.srikar.freshmaps.Room;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -170,6 +173,66 @@ public class School {
             mergeRoom(left, right, whole);
         }
         return whole;
+    }
+
+    public String getTeachersByRoom(String clickedRoom) {
+        ArrayList<Room> a = totalSchool;
+        String teachers = "";
+        Room next = null;
+
+        Iterator iter = a.iterator();
+        while (iter.hasNext()) {
+            Room tra = (Room) iter.next();
+            if (tra.hasTwoRooms()) {
+                if (tra.getRoomNumber2().equals(clickedRoom) || tra.getRoomNumber1().equals(clickedRoom)) {
+                    teachers += "[" + tra.getTeacher() + "] ";
+
+
+                }
+            } else {
+                if (tra.getRoomNumber1().equals(clickedRoom)) {
+                    teachers += "[" + tra.getTeacher() + "] ";
+                }
+            }
+
+        }
+        return teachers;
+    }
+
+    public String[] getRoomsByTeacher(String clickedName){
+        ArrayList<Room> a = totalSchool;
+        Room next = a.get(0);
+        int first = 0;
+        int last = a.size() - 1;
+        while (first < last) {
+            if (last - first == 1) {
+                if (a.get(first).getTeacher().equals(clickedName)) {
+                    next = a.get(first);
+                    last = first;
+                } else {
+                    next = a.get(last);
+                    last = first;
+                }
+            }
+            int mid = (first + last) / 2;
+            if (a.get(mid).getTeacher().equals(clickedName)) {
+                next = a.get(mid);
+                break;
+            } else if (a.get(mid).getTeacher().compareTo(clickedName) < 0) {
+                first = mid;
+            } else {
+                last = mid;
+            }
+        }
+
+        String d = "";
+        if (next.hasTwoRooms()) {
+            d = next.getRoomNumber1() + "/" + next.getRoomNumber2();
+        } else {
+            d = next.getRoomNumber1();
+        }
+        String[] total = {clickedName + " is in room ", d, d};
+        return total;
     }
 
     /**
