@@ -175,6 +175,11 @@ public class School {
         return whole;
     }
 
+    /**
+     * Method that gets the teacher given the room
+     * @param clickedRoom
+     * @return
+     */
     public String getTeachersByRoom(String clickedRoom) {
         ArrayList<Room> a = totalSchool;
         String teachers = "";
@@ -199,6 +204,11 @@ public class School {
         return teachers;
     }
 
+    /**
+     * Method that gets the room given teacher name
+     * @param clickedName
+     * @return
+     */
     public String[] getRoomsByTeacher(String clickedName){
         ArrayList<Room> a = totalSchool;
         Room next = a.get(0);

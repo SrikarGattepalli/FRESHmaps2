@@ -12,6 +12,10 @@ import com.example.srikar.freshmaps.R;
 
 public class Debug extends AppCompatActivity {
 
+    /**
+     * Method that creates a new activity for the purposes of debugging
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

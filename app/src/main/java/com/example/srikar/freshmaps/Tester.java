@@ -15,10 +15,19 @@ import java.io.InputStream;
  */
 public class Tester {
     Context context;
+
+    /**
+     * Default Constructor that takes in a context where it is called.
+     * @param cont
+     */
     public Tester(Context cont){
        context = cont;
     }
 
+    /**
+     * Method that returns the entire test runthrough as a string
+     * @return
+     */
     public String test(){
        String output = "";
 
