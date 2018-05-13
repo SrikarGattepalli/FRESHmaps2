@@ -177,8 +177,8 @@ public class School {
 
     /**
      * Method that gets the teacher given the room
-     * @param clickedRoom
-     * @return
+     * @param clickedRoom room clicked on
+     * @return the teacher of a given room
      */
     public String getTeachersByRoom(String clickedRoom) {
         ArrayList<Room> a = totalSchool;
@@ -206,8 +206,8 @@ public class School {
 
     /**
      * Method that gets the room given teacher name
-     * @param clickedName
-     * @return
+     * @param clickedName name clicked on
+     * @return string array containing rooms
      */
     public String[] getRoomsByTeacher(String clickedName){
         ArrayList<Room> a = totalSchool;

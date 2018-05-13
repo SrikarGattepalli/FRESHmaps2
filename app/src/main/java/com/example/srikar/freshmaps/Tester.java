@@ -26,7 +26,7 @@ public class Tester {
 
     /**
      * Method that returns the entire test runthrough as a string
-     * @return
+     * @return test run output of the entire system's database
      */
     public String test(){
        String output = "";
